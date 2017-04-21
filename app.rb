@@ -19,7 +19,7 @@ get('/output') do
     ' The first phrase is also a palindrome!',
     ' The second phrase is also a palindrome!',
     ' However, they are antagrams!',
-    'Both words must contain vowels. Try again.'
+    'All words must contain vowels. Try again.'
   ]
   output_arr = @first_word.anagram(@second_word)
   @output = ""
