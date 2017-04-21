@@ -13,13 +13,21 @@ class String
     if (word1.chars.sort<=>word2.chars.sort) == 0
       answer[:anagram] = 0
       if word1.reverse == word1
-        answer[:palindromeLeft] = 0
+        answer[:palindrome] = 0
       elsif word2.reverse == word2
-        answer[:palindromeRight] = 0
+        answer[:palindrome] = 1
       end#sub branch 1
     else
       answer[:anagram] = 1
-      #antigram logic
+      antigram = true
+      word1.split("").each() do |char|
+        if word2.include?(char)==true
+          antigram = false
+        end
+      end
+      if antigram == true
+        answer[:antigram] = 0
+      end
     end
     answer
   end

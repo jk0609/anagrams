@@ -2,9 +2,9 @@ require('rspec')
 require('./lib/anagram')
 
 describe('Word#anagram') do
-  #0 = true, 1 = false
+  #0 = true, 1 = false, for palindromes, 0 = left, 1 = right
   it('returns non-anagram inputs as 1') do
-    expect('test'.anagram('apple')).to(eq({:anagram=>1}))
+    expect('taste'.anagram('apple')).to(eq({:anagram=>1}))
   end
   it('returns 2 one-word anagram inputs as 0') do
     expect('test'.anagram('estt')).to(eq({:anagram=>0}))
@@ -18,10 +18,13 @@ describe('Word#anagram') do
   it('rejects both inputs if either of them have no vowels') do
     expect('srts'.anagram('srts')).to(eq('One of these words needs vowels.'))
   end
-  it('returns 0 if first word is a palindrome') do
-    expect('PotOP'.anagram('toopp')).to(eq({:anagram=>0, :palindromeLeft=>0}))
+  it('returns anagram:0, palindrome: 0 if first word is a palindrome') do
+    expect('PotOP'.anagram('toopp')).to(eq({:anagram=>0, :palindrome=>0}))
   end
-  it('returns 0 if 2nd word is a palindrome') do
-    expect('geesegodseedo'.anagram('Do geese see God?')).to(eq({:anagram=>0, :palindromeRight=>0}))
+  it('returns anagram:0, palindrome: 1 if 2nd word is a palindrome') do
+    expect('geesegodseedo'.anagram('Do geese see God?')).to(eq({:anagram=>0, :palindrome=>1}))
+  end
+  it('returns anagram:1, antigram:0 if words are antigrams') do
+    expect('hi'.anagram('bye')).to(eq({:anagram=>1, :antigram=>0}))
   end
 end
