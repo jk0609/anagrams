@@ -2,6 +2,7 @@ require('rspec')
 require('./lib/anagram')
 
 describe('Word#anagram') do
+  #output is processed into a string on app.rb
   it('returns non-anagram inputs as 1') do
     expect('taste'.anagram('apple')).to(eq([1]))
   end
@@ -26,7 +27,7 @@ describe('Word#anagram') do
   it('returns anagram:1, antigram:4 if words are antigrams') do
     expect('hi'.anagram('bye')).to(eq([1,4]))
   end
-  it('returns anagram:1, antigram:4 if multiple words are antigrams') do
-    expect('hi tim ros'.anagram('bye pack')).to(eq([1,4]))
+  it('returns anagram:1, antigram:4 if multiple words with punctuation are antigrams') do
+    expect('hi tim ros'.anagram('bye pack!')).to(eq([1,4]))
   end
 end
