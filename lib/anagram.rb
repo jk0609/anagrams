@@ -18,7 +18,6 @@ class String
     word1 = self.downcase.gsub(/[^a-z0-9]/,'')
     word2 = compare.downcase.gsub(/[^a-z0-9]/,'')
 
-
     #anagram logic
     if (word1.chars.sort<=>word2.chars.sort) == 0
       answer.push(0)
